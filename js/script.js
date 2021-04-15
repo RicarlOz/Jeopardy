@@ -20,7 +20,7 @@ const questions = [ /*Category 1*/
     "¿Cuál fue el nombre inicial de Mario Bros?",
     /*Category 3*/
     "¿En qué consola se estreno el Kinect?",
-    "¿Cuál fue el nombre clave del Xbox One?",
+    "¿Cuál fue el nombre clave del desarrollo del Xbox Series X?",
     "¿Qué empresa desarrollo la consola Dreamcast?",
     "¿Cómo se llama la plataforma que lanzó Google jugar para videojuegos?",
     "¿Cuál fue la primera Consola doméstica?",
@@ -39,41 +39,41 @@ const questions = [ /*Category 1*/
 ];
 
 // Questions oredered by category
-const questions = [ /*Category 1*/
-    "",
-    "",
-    "",
-    "",
-    "",
+const answers = [ /*Category 1*/
+    "Minecraft",
+    "E.T. the Extra-Terrestrial",
+    "↑ ↑ ↓ ↓ ← → ← → B A",
+    "Microvision",
+    "Nintendo Koppai se dedicaba a producir cartas.",
     /*Category 2*/
-    "",
-    "",
-    "",
-    "",
-    "",
+    "Steve",
+    "El protagonista de la saga Halo.",
+    "Pikachu",
+    "Planta, Fuego y Agua.",
+    "Jumpman",
     /*Category 3*/
-    "",
-    "",
-    "",
-    "",
-    "",
+    "Xbox 360",
+    "Project Scarlett",
+    "Sega",
+    "Google Stadia",
+    "Magnavox Odyssey",
     /*Category 4*/
-    "",
-    "",
-    "",
-    "",
-    "",
+    "Riot Games",
+    "Pocket Monsters",
+    "Grand Theft Auto III",
+    "Unión Soviética, Moscú",
+    "1993",
     /*Category 5*/
-    "",
-    "",
-    "",
-    "",
-    ""
+    "Age of Empires",
+    "Pac-Man",
+    "Metal Gear",
+    "Tetris",
+    "Crash Bandicoot"
 ];
 
-// var teams = prompt("Cantidad de equipos:");
+var teams = prompt("Cantidad de equipos:");
 var score = [];
-var teams = 3;
+var actualQues = -1;
 
 //Preload -> Se carga una sola vez cuando se refresca la pagina
 function preload() {
@@ -82,7 +82,7 @@ function preload() {
     for (var i = 1; i <= teams; i++) {
         console.log(i);
         score.push(0);
-        teamsView.innerHTML += "<div class='Score' id='T" + i + "'> <h3>Team " + i + "</h3>" +
+        teamsView.innerHTML += "<div class='Score' id='T" + i + "'> <h3>Equipo " + i + "</h3>" +
             "<div style='text-align: center;'>" +
             "<button class='Add' onclick='addPoints(" + (i - 1) + ",100)'>+</button>" +
             "<button class='Sub' onclick='addPoints(" + (i - 1) + ",-100)'>-</button>" +
@@ -100,19 +100,25 @@ function preload() {
 
 //ShowPregunta -> Se ejecuta cada que se preciona un recuadro, muestra Pregunta
 function showPregunta(index) {
-    hide(index);
+    actualQues = index;
 
     var tablero = document.getElementsByClassName("Tablero");
     var pregunta = document.getElementsByClassName("Pregunta");
     tablero[0].className += " NoDisplay";
     pregunta[0].className = "Pregunta " + colors[index];
 
+    var correct = document.getElementsByClassName("Correct");
     var goBack = document.getElementsByClassName("Close");
-    goBack[0].className = "Close " + colors[(index + 3) % 12];
+
+    correct[0].className = "Correct " + colors[index];
+    goBack[0].className = "Close " + colors[index];
 
     var audio = document.getElementById("audio");
-    var aux = document.getElementById("thisQuestion");
-    aux.innerHTML = questions[index];
+    var ans = document.getElementById("answer");
+    var ques = document.getElementById("thisQuestion");
+    ques.innerHTML = questions[index];
+    ans.className += (" NoDisplay");
+    ans.innerHTML = answers[index];
 
     switch (index) {
         case 20:
@@ -140,6 +146,12 @@ function showPregunta(index) {
     }
 }
 
+//ShowAnswer -> Shows the answer of the question
+function showAnswer() {
+    var ans = document.getElementById("answer");
+    ans.className = "answer";
+}
+
 //Hide -> Se ejecuta cada que showPregunta() lo hace, marca un recuadro como usado
 function hide(index) {
     var faltan = document.getElementsByClassName("Falta");
@@ -159,10 +171,23 @@ function addPoints(team, val) {
     puntos[team].lastElementChild.innerHTML = score[team];
 }
 
-//ClosePregunta -> Esconde la pregunta y muestra el tablero
+//ClosePregunta -> Hides the question and shows the board
 function closePregunta() {
     var tablero = document.getElementsByClassName("Tablero");
     var pregunta = document.getElementsByClassName("Pregunta");
+    var ans = document.getElementById("answer");
+    pregunta[0].className = "Pregunta NoDisplay";
+    tablero[0].className = "Tablero";
+
+    var audio = document.getElementById("audio");
+    audio.innerHTML = "";
+}
+
+function correctAnswer() {
+    hide(actualQues);
+    var tablero = document.getElementsByClassName("Tablero");
+    var pregunta = document.getElementsByClassName("Pregunta");
+    var ans = document.getElementById("answer");
     pregunta[0].className = "Pregunta NoDisplay";
     tablero[0].className = "Tablero";
 

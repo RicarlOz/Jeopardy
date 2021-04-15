@@ -117,11 +117,17 @@ button {
     height: 10%;
     width: 100%;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+}
+
+.Points button {
+    margin-left: 5rem;
+    margin-right: 5rem;
 }
 
 .Add,
-.Sub {
+.Sub,
+.Ans {
     border: none;
     border-radius: 10px;
     font-size: x-large;
@@ -129,8 +135,12 @@ button {
     width: 1.5em;
 }
 
+.Correct {
+    color: #44bd32;
+}
+
 .Close {
-    font-size: x-large;
+    color: #c23616;
 }
 
 .Add {
@@ -140,6 +150,14 @@ button {
 .Sub {
     background-color: rgb(194, 54, 54);
     margin-left: 0.8rem;
+}
+
+.Ans {
+    color: #FFF;
+    font-size: 30pt;
+    font-weight: bold;
+    height: 2em;
+    width: 5.5em;
 }
 
 .NoDisplay {
@@ -152,4 +170,8 @@ button {
 
 .Color-Gris {
     background-color: #8395a7;
+}
+
+.Color-Morado {
+    background-color: #9c88ff;
 }
