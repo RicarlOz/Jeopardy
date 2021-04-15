@@ -1,3 +1,3 @@
-El Club Rotaract Tecnologico de Monterrey lanzó la iniciativa BeatCovid, dentro de la cual se hizo un concurso (inspirado en Jeopardy y Family Feud) de conocimiento general, aqui encontraran los tableros usados para dicho evento, de momento no anexamos las respuestas.
-Queremos felicitar al equipo GPI por haber ganado el primer lugar en el concurso.
-El concurso tuvo lugar del 28/08/20 al 29/08/20
+#Jeopardy
+This project is a copy of the TV show game Jeopardy. At first code was developed by my partner Ernesto as a game for a contest that our Rotaract group made, Rotaract Tec de Monterrey. I took his code and I made several modifications to adapt it for a Game Jam to entertain the contestants.
+If you want to know the work of Ernesto, you can visit his github at github.com/NetoDios.
